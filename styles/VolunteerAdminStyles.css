@@ -1,0 +1,18 @@
+#serviceHours {
+    border: 1px solid #ddd;
+}
+#serviceHours tr {
+    border-bottom: 1px solid #ddd;
+}
+#serviceHours tr.header, #serviceHours tr:hover {
+    background-color: #f1f1f1;
+}
+.colSignup {
+	float: left;
+    column-width: 300px;
+}
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}

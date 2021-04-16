@@ -10,6 +10,13 @@ Author URI: https://github.com/speth410
 
 include('importCSV.php');
 include('ServiceHours.php');
+include('VolunteerScheduling.php');
+
+add_action('wp_enqueue_scripts', 'importStyle');
+function importStyle() {
+    wp_register_style('volunteer-admin-style', plugins_url('VolunteerAdmin/styles/VolunteerAdminStyles.css'));
+    wp_enqueue_style('volunteer-admin-style', plugins_url('VolunteerAdmin/styles/VolunteerAdminStyles.css'));
+}
 
 // Create a new table
 function createDatabase(){
@@ -36,7 +43,6 @@ function createDatabase(){
 dbDelta( $sql );
 
 }
-//register_activation_hook( __FILE__, 'main' );
 
 // Add menu
 function plugin_menu() {
@@ -150,7 +156,9 @@ function main() {
 }
 ?>
 <?php
+ 
 add_shortcode('importcsv', 'main');
 add_shortcode('servicehours', 'showServiceHours');
+add_shortcode('volunteersignup', 'showVolunteerSignup');
 add_action("admin_menu", "plugin_menu");
 ?>
