@@ -72,60 +72,62 @@ function main() {
 
         <!-- Record List -->
         <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names">
-        <table id="volunteerLog" width='100%' border='1' style='border-collapse: collapse;'>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Task</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-                global $wpdb;
+        <div class="divScroll">
+            <table id="volunteerLog" width='100%' border='1' style='border-collapse: collapse;'>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                    global $wpdb;
 
-                // Table name
-                $tablename = $wpdb->prefix."volunteer_log";
-                // Fetch records
-                $entriesList = $wpdb->get_results("SELECT * FROM ".$tablename." order by id desc");
-                if(count($entriesList) > 0){
-                    $count = 0;
-                    foreach($entriesList as $entry){
-                        $id = $entry->id;
-                        $firstname = $entry->firstname;
-                        $lastname = $entry->lastname;
-                        $username = $entry->username;
-                        $email = $entry->email;
-                        $volunteer_date = $entry->volunteer_date;
-                        $task = $entry->task;
-                        $start_time = $entry->start_time;
-                        $end_time = $entry->end_time;
+                    // Table name
+                    $tablename = $wpdb->prefix."volunteer_log";
+                    // Fetch records
+                    $entriesList = $wpdb->get_results("SELECT * FROM ".$tablename." order by id desc");
+                    if(count($entriesList) > 0){
+                        $count = 0;
+                        foreach($entriesList as $entry){
+                            $id = $entry->id;
+                            $firstname = $entry->firstname;
+                            $lastname = $entry->lastname;
+                            $username = $entry->username;
+                            $email = $entry->email;
+                            $volunteer_date = $entry->volunteer_date;
+                            $task = $entry->task;
+                            $start_time = $entry->start_time;
+                            $end_time = $entry->end_time;
 
-                        echo "<tr>
-                        <td>".++$count."</td>
-                        <td>".$firstname."</td>
-                        <td>".$lastname."</td>
-                        <td>".$username."</td>
-                        <td>".$email."</td>
-                        <td>".$volunteer_date."</td>
-                        <td>".$task."</td>
-                        <td>".$start_time."</td>
-                        <td>".$end_time."</td>
-                        </tr>
-                        ";
+                            echo "<tr>
+                            <td>".++$count."</td>
+                            <td>".$firstname."</td>
+                            <td>".$lastname."</td>
+                            <td>".$username."</td>
+                            <td>".$email."</td>
+                            <td>".$volunteer_date."</td>
+                            <td>".$task."</td>
+                            <td>".$start_time."</td>
+                            <td>".$end_time."</td>
+                            </tr>
+                            ";
+                        }
+                    }else{
+                        echo "<tr><td colspan='9'>No records found</td></tr>";
                     }
-                }else{
-                    echo "<tr><td colspan='9'>No records found</td></tr>";
-                }
-            ?>
-            </tbody>
-        </table>
+                ?>
+                </tbody>
+            </table>
+        </div>
         <script>
             function searchTable() {
                 // Declare variables

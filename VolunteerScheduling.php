@@ -21,7 +21,7 @@ function showVolunteerSignup() { ?>
                 <label>Date</label><br>
                 <input type="date" id="selDate" name="date" required>
                 <br><br><br>
-                <input type="submit" name="VolunteerSignup" value="Submit">
+                
             </div>
             <div class="colSignup">
                 <br>
@@ -38,7 +38,15 @@ function showVolunteerSignup() { ?>
                 <input type="time" id="txtStartTime" name="stime" required>
                 <br><br>
                 <label>End Time</label><br>
-                <input type="time" id="txtEndTime" name="etime" required>		
+                <input type="time" id="txtEndTime" name="etime" required>
+                <br><br><br>	
+            </div>
+        </div>
+        <div class="row">
+            <div class="colSignup">
+                <input type="submit" name="VolunteerSignup" value="Submit">
+            </div>
+            <div class="colSignup">
             </div>
         </div>
     </form>
@@ -81,8 +89,6 @@ if(isset($_POST['VolunteerSignup'])){
         'total_time' => $total,
     ));
     echo "<h3 style='color: green;'>Record Successfully Added!</h3>";
-    echo $record;
-    echo $start;
     } else {
         echo "<h3 style='color: red;'>Duplicate Record Could Not Be Entered!</h3>";
     }
